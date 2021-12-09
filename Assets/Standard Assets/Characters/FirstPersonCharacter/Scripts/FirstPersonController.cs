@@ -45,7 +45,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         private int count; //Prototype3
+        private int lives; //Prototype3
         public TextMeshProUGUI countText; //Prototype3
+        public GameObject winTextObject; //Prototype3
+        public GameObject loseTextObject; //Prototype3
+        public TextMeshProUGUI livesCount; //Prototype3
 
         // Use this for initialization
         private void Start()
@@ -61,8 +65,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
             count = 0; //Prototype3
+            lives = 3; //Prototype3
 
             SetCountText(); //Prototype3
+            winTextObject.SetActive(false); //Prototype3
+            loseTextObject.SetActive(false); //Prototype3
+            SetLivesCount(); //Prototype3
         }
 
 
@@ -102,8 +110,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
         void SetCountText() //Prototype3
         {
             countText.text = "Collected: " + count.ToString();
+            if(count >= 10)
+            {
+                winTextObject.SetActive(true);
+            }
         }
 
+        void SetLivesCount() //Prototype3
+        {
+            livesCount.text = "Lives: " + lives.ToString();
+            if (lives <= 0)
+            {
+                loseTextObject.SetActive(true);
+            }
+        }
 
         private void FixedUpdate()
         {
@@ -278,6 +298,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                 SetCountText();
             }
+            
+            if (other.gameObject.CompareTag("Bonus"))
+            {
+                other.gameObject.SetActive(false);
+                lives = lives - 1;
+
+                SetLivesCount();
+            }
+
         }
     }
 }

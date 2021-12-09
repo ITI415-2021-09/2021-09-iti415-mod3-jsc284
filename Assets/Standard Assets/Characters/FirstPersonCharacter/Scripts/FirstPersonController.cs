@@ -4,6 +4,8 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 
+using TMPro; //Prototype3
+
 namespace UnityStandardAssets.Characters.FirstPerson
 {
     [RequireComponent(typeof (CharacterController))]
@@ -42,6 +44,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        private int count; //Prototype3
+        public TextMeshProUGUI countText; //Prototype3
+
         // Use this for initialization
         private void Start()
         {
@@ -55,6 +60,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            count = 0; //Prototype3
+
+            SetCountText(); //Prototype3
         }
 
 
@@ -89,6 +97,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource.clip = m_LandSound;
             m_AudioSource.Play();
             m_NextStep = m_StepCycle + .5f;
+        }
+
+        void SetCountText() //Prototype3
+        {
+            countText.text = "Collected: " + count.ToString();
         }
 
 
@@ -256,11 +269,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other) //Prototype3
         {
             if(other.gameObject.CompareTag("PickUp"))
             {
                 other.gameObject.SetActive(false);
+                count = count + 1;
+
+                SetCountText();
             }
         }
     }

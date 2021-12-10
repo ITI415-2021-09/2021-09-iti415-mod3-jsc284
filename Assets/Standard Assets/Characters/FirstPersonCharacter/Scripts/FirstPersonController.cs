@@ -110,7 +110,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         void SetCountText() //Prototype3
         {
             countText.text = "Collected: " + count.ToString();
-            if(count >= 10)
+            if(count >= 9)
             {
                 winTextObject.SetActive(true);
             }
@@ -306,6 +306,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
                 SetLivesCount();
             }
+            //Prototype3
+            // if (lives == 0)
+            // {
+                // SceneManager.LoadScene("Main-Prototype 1");
+            // }
 
         }
     }

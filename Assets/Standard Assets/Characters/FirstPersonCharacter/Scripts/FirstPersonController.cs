@@ -50,6 +50,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public GameObject winTextObject; //Prototype3
         public GameObject loseTextObject; //Prototype3
         public TextMeshProUGUI livesCount; //Prototype3
+        public static float bottomY = -20f; //Prototype3
 
         // Use this for initialization
         private void Start()
@@ -295,6 +296,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 other.gameObject.SetActive(false);
                 count = count + 1;
+                other.gameObject.GetComponent<AudioSource>().Play();
                 SetCountText();
             }
             

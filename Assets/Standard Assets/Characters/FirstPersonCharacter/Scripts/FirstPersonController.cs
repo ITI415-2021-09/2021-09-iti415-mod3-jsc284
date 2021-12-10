@@ -295,11 +295,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 other.gameObject.SetActive(false);
                 count = count + 1;
-
                 SetCountText();
             }
             
-            if (other.gameObject.CompareTag("Bonus"))
+            if (other.gameObject.CompareTag("Bonus")) //Prototype3
             {
                 other.gameObject.SetActive(false);
                 lives = lives - 1;

@@ -6,8 +6,9 @@ public class Sound : MonoBehaviour
 {
     public AudioSource playSound;
 
-    void onTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        playSound.Play();
+        if (other.gameObject.CompareTag("PickUp"))
+        { playSound.Play(); }
     }
 }

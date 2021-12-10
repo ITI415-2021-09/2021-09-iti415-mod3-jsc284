@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fire
   - Loader
+  - PickUp
+  - Bonus
+  - wayPoint
   layers:
   - Default
   - TransparentFX

@@ -65,7 +65,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
-            count = 0; //Prototype3
+            count = 13; //Prototype3
             lives = 3; //Prototype3
 
             SetCountText(); //Prototype3
@@ -110,8 +110,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         void SetCountText() //Prototype3
         {
-            countText.text = "Collected: " + count.ToString();
-            if(count >= 9)
+            countText.text = "Blocks Left: " + count.ToString();
+            if(count <= 0)
             {
                 winTextObject.SetActive(true);
             }
@@ -295,7 +295,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if(other.gameObject.CompareTag("PickUp"))
             {
                 other.gameObject.SetActive(false);
-                count = count + 1;
+                count = count - 1;
                 other.gameObject.GetComponent<AudioSource>().Play();
                 SetCountText();
             }

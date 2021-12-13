@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Sound : MonoBehaviour
 {
-//  public AudioSource playSound;
+ // public AudioSource playSound;
 
-//void OnTriggerEnter(Collider other)
-//{
-// if (other.gameObject.CompareTag("PickUp"))
-//   { playSound.Play(); }
-// }
+// void OnTriggerEnter(Collider other)
+// {
+        // if (other.gameObject.CompareTag("PickUp"))
+ // { playSound.Play(); }
+ //}
 }

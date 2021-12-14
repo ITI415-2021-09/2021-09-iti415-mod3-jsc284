@@ -51,6 +51,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public GameObject loseTextObject; //Prototype3
         public TextMeshProUGUI livesCount; //Prototype3
         public static float bottomY = -20f; //Prototype3
+        public GameObject CollectibleSoundSource; //Prototype3
+        public GameObject ScarySoundSource; //Prototype3
 
         // Use this for initialization
         private void Start()
@@ -67,6 +69,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
             count = 13; //Prototype3
             lives = 3; //Prototype3
+            // Random variable to Invoke PlayScarySound function
 
             SetCountText(); //Prototype3
             winTextObject.SetActive(false); //Prototype3
@@ -294,9 +297,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if(other.gameObject.CompareTag("PickUp"))
             {
+                Invoke("PlayPickUpSound",0.0f);
                 other.gameObject.SetActive(false);
                 count = count - 1;
-                other.gameObject.GetComponent<AudioSource>().Play();
                 SetCountText();
             }
             
@@ -313,6 +316,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 // SceneManager.LoadScene("Main-Prototype 1");
             // }
 
+        }
+
+        public void PlayPickUpSound() //Prototype3
+        {
+            CollectibleSoundSource.GetComponent<AudioSource>().Play();
+        }
+
+        public void PlayScarySound() //Prototype3
+        {
+            ScarySoundSource.GetComponent<AudioSource>().Play();
+            // Generate another variable for next time scary sound plays
         }
     }
 }
